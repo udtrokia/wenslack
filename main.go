@@ -1,22 +1,29 @@
-package main
+package main;
 
 import (
 	"github.com/kataras/iris"
+);
 
-	"github.com/kataras/iris/middleware/logger"
-	"github.com/kataras/iris/middleware/recover"
-)
+type Advices struct {
+	Uint string
+	Position string
+	Advice string
+}
+
+func post(ctx iris.Context) {
+	advice :=  Advices{};
+	err := ctx.ReadJSON(&advice);
+	if err != nil {
+		ctx.StatusCode(iris.StatusInternalServerError)
+		ctx.WriteString(err.Error())
+	};
+	insert(&advice);
+	ctx.Writef("Post: %#v", &advice);
+}
+
 
 func main() {
 	app := iris.New();
-	app.Logger().SetLevel("debug");
-
-	app.Use(recover.New());
-	app.Use(logger.New());
-
-	app.Handle("GET", "/login", func(ctx iris.Context) {
-		ctx.HTML("<h1>Welcome</h1>")
-	});
-
-	app.Run(iris.Addr(":8080"), iris.WithoutServerError(iris.ErrServerClosed))
+	app.Post("/", post);
+	app.Run(iris.Addr(":8080"));
 }
