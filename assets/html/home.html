@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="title" content="Wenslack!">
+    <title>Wenslack!</title>
+  </head>
+  <body class="ctn">
+    <form class="ctn box login-form" action="" autocomplete="on">
+      Account:  <input class="box login-input" type="text" name="fname">
+      Password: <input class="box login-input" type="text" name="lname">
+      <input class="box login-input" type="submit" value="login" />
+    </form>
+  </body>
+</html>
+
+<style>
+  body{
+      height: 100vh;
+      max-width: 960px;
+      margin: 0 auto;
+      overflow: hidden;
+  }
+  .ctn{
+      display: flex;      
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      background-color: black;      
+  }
+  .box{
+      color: white;
+      background-color: black;      
+      border:1px solid white;
+  }  
+  .login-form{
+      padding: 100px;
+  }
+  .login-input{
+      margin: 0.5rem 0 1rem 0;
+  }
+</style>

@@ -1,0 +1,28 @@
+body{
+    height: 100vh;
+    max-width: 960px;
+    margin: 0 auto;
+}
+.ctn{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: black;
+}
+.box{
+    color: white;
+    background-color: black;
+    border:1px solid white;
+}
+.dashboard-table {
+    max-width: 720px;
+    margin: 0 auto;
+}
+.dashboard-row {
+
+}
+.dashboard-row > td {
+    padding: 20px;
+    /* border:1px solid white; */
+}

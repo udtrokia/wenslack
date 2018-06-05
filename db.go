@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"gopkg.in/yaml.v2"	
 	"github.com/go-pg/pg"
-//	"github.com/go-pg/pg/orm"
 );
 
 type Config struct {
@@ -14,8 +13,6 @@ type Config struct {
 	Database string
 }
 
-
-// dbconnect
 func db() *pg.DB {
 	c := Config{};
 	y, _ := ioutil.ReadFile("./config.yaml");
@@ -28,25 +25,16 @@ func db() *pg.DB {
 	return db;	
 }
 
-
-
-//func create () bool {	
-//	for _, model := range []interface{}{&Advices{}} {
-//		err := db.CreateTable(model, &orm.CreateTableOptions{
-//			Temp:          false, 
-//			FKConstraints: true,
-//		})
-//		if err != nil {
-//			panic(err)
-//		}
-//	}
-//	println("create table");
-//	return true;
-//}
-
-func insert (advice *Advices) {
+func insert(advice *Advices) {
 	fmt.Println(advice);
 	db := db();
 	err := db.Insert(advice)
 	if err != nil { panic(err) };
+}
+
+func find() ([]Advices, error){
+	db := db();
+	var advices []Advices
+	_, err := db.Query(&advices, `SELECT * FROM advices`);
+	return advices, err
 }
