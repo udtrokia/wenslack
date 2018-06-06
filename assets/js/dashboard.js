@@ -4,12 +4,16 @@
   xhr.open("POST", "/api/get_list" , true);
   xhr.send();
   xhr.onreadystatechange = function(res){
+    var _list = [];    
     var list = res.target.response
               ?JSON.parse(res.target.response)
               :null;
-    list != null && layout(list);
-    console.log(list);
-    console.log(res);
+
+    for(var i in list){
+      _list.push(JSON.parse(list[i]["orbit"]))
+    }
+    
+    list != null && layout(_list);
   }
 
   function layout(list){

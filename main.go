@@ -2,7 +2,6 @@ package main;
 
 import (
 	"time"
-//	"fmt"
 	"encoding/json"
 	"github.com/udtrokia/bowie"
 	"github.com/kataras/iris"
@@ -20,7 +19,12 @@ type Advices struct {
 
 func post(ctx iris.Context) {
 	advice :=  Advices{};
-
+	if err := ctx.ReadJSON(&advice); err != nil {
+		ctx.StatusCode(iris.StatusBadRequest)
+		ctx.WriteString(err.Error())
+		return
+	}
+	
 	out, err := json.Marshal(advice);
 	if err != nil { panic(err) };
 	
