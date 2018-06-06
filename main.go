@@ -28,7 +28,7 @@ func post(ctx iris.Context) {
 	out, err := json.Marshal(advice);
 	if err != nil { panic(err) };
 	
-	ziggy := Bowie.Ziggy("wenslack.db", 0666);
+	ziggy := Bowie.Ziggy("./assets/wenslack.db", 0666);
 	ziggy.Star(
 		[]byte(""), out,
 		true);
@@ -37,7 +37,7 @@ func post(ctx iris.Context) {
 }
 
 func get_list(ctx iris.Context) {
-	ziggy := Bowie.Ziggy("wenslack.db", 0666);
+	ziggy := Bowie.Ziggy("./assets/wenslack.db", 0666);
 	ziggy.Oddity(func (pairs []Bowie.Asher){
 		ctx.JSON(pairs);
 	})
@@ -78,5 +78,5 @@ func main() {
 		api.Post("get_list", get_list);
 	}
 
-	app.Run(iris.Addr(":8080"));
+	app.Run(iris.Addr(":2333"));
 }
