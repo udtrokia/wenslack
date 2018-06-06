@@ -8,12 +8,13 @@
               ?JSON.parse(res.target.response)
               :null;
     list != null && layout(list);
+    console.log(list);
+    console.log(res);
   }
 
   function layout(list){
     const table = document.getElementById("dashboard-table");
     table.innerHTML = "<caption><h2>List</h2></caption>";
-    console.log(list[0].Uint)
     for(var a in list){
       let tr = document.createElement("tr");
       tr.className = "dashboard-row";

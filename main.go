@@ -2,7 +2,9 @@ package main;
 
 import (
 	"time"
-	
+	"fmt"
+	"encoding/json"
+	"github.com/udtrokia/bowie"
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/middleware/basicauth"
 	"github.com/iris-contrib/middleware/cors"
@@ -20,19 +22,37 @@ func post(ctx iris.Context) {
 	advice :=  Advices{};
 	err := ctx.ReadJSON(&advice);
 	if err != nil {
-		ctx.StatusCode(iris.StatusInternalServerError)
-		ctx.WriteString(err.Error())
+		ctx.StatusCode(iris.StatusInternalServerError);
+		ctx.WriteString(err.Error());
 	};
-	insert(&advice);
+
+	out, err := json.Marshal(advice);
+	
+	ziggy := Bowie.Ziggy("wenslack.db", 0666);
+	ziggy.Star(
+		[]byte(""),
+		[]byte(string(out)),
+		true);
+	
 	ctx.Writef("Post: %#v", &advice);
 }
 
 func get_list(ctx iris.Context) {
-	list, err := find();
-	if err != nil {
-		ctx.Writef("Error", err);		
-	}
-	ctx.JSON(list);
+	ziggy := Bowie.Ziggy("wenslack.db", 0666);
+	ziggy.Oddity(func (pairs []Bowie.Asher){
+		//out, err := json.Marshal(pairs);		
+		fmt.Printf("\n%#v\n", pairs);
+		fmt.Printf("%+v\n", pairs);
+		fmt.Printf("%v\n", pairs);
+
+//		_pairs, err := find();
+//		if err != nil {panic(err)};
+//		fmt.Printf("\n%#v\n", _pairs);
+//		fmt.Printf("%+v\n", _pairs);
+//		fmt.Printf("%v\n", _pairs);
+//		
+		ctx.JSON(pairs);
+	})
 }
 
 func main() {
@@ -43,11 +63,11 @@ func main() {
 	
 	authConfig := basicauth.Config{
 		Users:   map[string]string{"username": "password" },
-		Realm:   "Authorization Required", // defaults to "Authorization Required"
+		Realm:   "Authorization Required", 
 		Expires: time.Duration(30) * time.Minute,
 	}
 
-	authentication := basicauth.New(authConfig)
+	authentication := basicauth.New(authConfig);
 
 	crs := cors.New(cors.Options{
 		AllowedOrigins: []string{"*"},
@@ -60,7 +80,6 @@ func main() {
 	page.Use(authentication);
 	app.RegisterView(iris.HTML("./assets/html", ".html"));
 	{
-		//page.Get("/", home);
 		page.Get("/", dashboard);
 		page.Get("dashboard", dashboard);
 	}
