@@ -2,7 +2,7 @@ package main;
 
 import (
 	"time"
-	"fmt"
+//	"fmt"
 	"encoding/json"
 	"github.com/udtrokia/bowie"
 	"github.com/kataras/iris"
@@ -20,18 +20,13 @@ type Advices struct {
 
 func post(ctx iris.Context) {
 	advice :=  Advices{};
-	err := ctx.ReadJSON(&advice);
-	if err != nil {
-		ctx.StatusCode(iris.StatusInternalServerError);
-		ctx.WriteString(err.Error());
-	};
 
 	out, err := json.Marshal(advice);
+	if err != nil { panic(err) };
 	
 	ziggy := Bowie.Ziggy("wenslack.db", 0666);
 	ziggy.Star(
-		[]byte(""),
-		[]byte(string(out)),
+		[]byte(""), out,
 		true);
 	
 	ctx.Writef("Post: %#v", &advice);
@@ -40,17 +35,6 @@ func post(ctx iris.Context) {
 func get_list(ctx iris.Context) {
 	ziggy := Bowie.Ziggy("wenslack.db", 0666);
 	ziggy.Oddity(func (pairs []Bowie.Asher){
-		//out, err := json.Marshal(pairs);		
-		fmt.Printf("\n%#v\n", pairs);
-		fmt.Printf("%+v\n", pairs);
-		fmt.Printf("%v\n", pairs);
-
-//		_pairs, err := find();
-//		if err != nil {panic(err)};
-//		fmt.Printf("\n%#v\n", _pairs);
-//		fmt.Printf("%+v\n", _pairs);
-//		fmt.Printf("%v\n", _pairs);
-//		
 		ctx.JSON(pairs);
 	})
 }
