@@ -79,8 +79,5 @@ func main() {
 	}
 
 	//app.Run(iris.Addr(":2333"));
-	app.Run(iris.TLS("127.0.0.1:2333",
-		"./assets/cert/mycert.cert",
-		"./assets/cert/mykey.key",
-	));
+	app.Run(iris.TLS(":2333", "mycert.crt", "mykey.key"))
 }

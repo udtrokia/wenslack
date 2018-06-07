@@ -1,6 +1,6 @@
 wenslack
 cert
 *.db
-html
-js
-css
+./assets/html
+./assets/js
+./assets/css
