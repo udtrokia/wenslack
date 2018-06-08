@@ -13,3 +13,8 @@ func dashboard(ctx iris.Context) {
 	ctx.Gzip(true);
 	ctx.View("dashboard.html")	
 }
+
+func d3(ctx iris.Context) {
+	ctx.Gzip(true);
+	ctx.View("d3.html")
+}

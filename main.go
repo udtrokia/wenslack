@@ -70,6 +70,7 @@ func main() {
 	{
 		page.Get("/", dashboard);
 		page.Get("dashboard", dashboard);
+		page.Get("d3", d3);		
 	}
 	
 	api := app.Party("/api/", crs).AllowMethods(iris.MethodOptions);

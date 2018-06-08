@@ -92,23 +92,6 @@ ctn{
 .right-row{
     display: flex;
     flex:1;
-    flex-direction: row;    
+    padding: 1rem;
 }
-.right-cell{
-    color: rgba(78, 186, 169, .9);
-    flex:1;
-}
-.right-cell-middle{
-    flex:1;
-    color: rgba(78, 186, 169, .9);    
-    border: 0px solid rgba(78, 186, 169, .9);
-    border-right-width: 1px;
-    border-left-width: 1px;
-}
-.right-cell-middle-last{
-    color: rgba(78, 186, 169, .9);    
-    border: 0px solid rgba(78, 186, 169, .9);
-    border-right-width: 1px;
-    border-left-width: 1px;
-    border-bottom-width: 1px;    
-}
+
