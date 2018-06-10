@@ -79,6 +79,6 @@ func main() {
 		api.Post("get_list", get_list);
 	}
 
-	app.Run(iris.Addr(":2333"));
+	app.Run(iris.Addr(":2333"),iris.WithPostMaxMemory(1));
 	//app.Run(iris.TLS(":2333", "mycert.crt", "mykey.key"))
 }
