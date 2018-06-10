@@ -20,7 +20,7 @@
 
   // node expression
   function layout(list){
-    const table = document.getElementById("table");    
+    const table = document.getElementById("table");
     const total = list.length;
     table.innerHTML = "";
     for(var a in list){
@@ -33,15 +33,16 @@
         u_amount += 1:""
       }
       let advice = document.createElement("div");
-      advice.className = "right-row box center";
+      advice.className = "right-row center";
       advice.onmouseover = mouse_over;
       advice.onmouseout  = mouse_out;
+      advice.attributes.total = list.length;
       advice.attributes.position = list[a].Position;
       advice.attributes.unit = list[a].Uint;
       advice.attributes.p_amount = p_amount;
       advice.attributes.u_amount = u_amount;
       advice.innerHTML = list[a].Advice;
-      table.appendChild(advice);
+      table.prepend(advice);
     }
   }
 
@@ -52,8 +53,11 @@
     let attrs = node.target.attributes;
     let attr_position = attrs.position;
     let attr_unit = attrs.unit;
-    draw_pie("position", attrs.p_amount, list.length);
-    draw_pie("unit", attrs.u_amount, list.length);
+    let total = attrs.total;
+    position.innerHTML = "";
+    unit.innerHTML = "";
+    draw_pie("position", attrs.p_amount, total);
+    draw_pie("unit", attrs.u_amount, total);
     detail.innerHTML =  "<text>"
                       + attr_unit
                       + ` · `
@@ -64,10 +68,15 @@
   function mouse_out(node){
     d3.selectAll("svg").remove();
     let detail = document.getElementById("detail");
+    let position = document.getElementById("position");
+    let unit = document.getElementById("unit");
+    position.innerHTML = "领域";
+    unit.innerHTML = "单位";
     detail.innerHTML = "详情";
   }
   
   function draw_pie(node, amount, total) {
+    console.log(total)
     var dataset = [{
       label: "rgba(78, 186, 169, .9)",
       count: amount

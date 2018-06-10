@@ -86,12 +86,16 @@ ctn{
     border-bottom-width: 1px;    
 }
 .right-table{
-    display: flex;
+    padding: 3rem;
+    height: 30rem;
     flex-direction: column;
+    overflow:scroll;
 }
 .right-row{
     display: flex;
-    flex:1;
     padding: 1rem;
 }
 
+svg{
+    margin: 2rem;
+}
