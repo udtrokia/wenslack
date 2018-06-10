@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="/static/css/dashboard.css"/>    
+    <link rel="stylesheet" type="text/css" href="/static/css/dashboard.css"/>
     <title>wenslack</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
@@ -10,20 +10,22 @@
     <script src="static/js/three.js"></script>
     <script src="static/js/renderers/Projector.js"></script>
     <script src="static/js/renderers/CanvasRenderer.js"></script>
-    <script type="text/javascript" src="/static/js/dashboard.js"></script>
+    <script src="/static/js/dashboard-bg.js"></script>
     
     <div class="panel">
       <div class="left box ctn" style="border-right-width:0px">
-        <div class="left-cell center">radius</div>
-        <div class="left-cell center">radius</div>
-        <div class="left-last-cell center">anaylse</div>
+        <div class="left-cell center" id="position">领域</div>
+        <div class="left-cell center" id="unit">单位</div>
+        <div class="left-last-cell center" id="detail">详情</div>
       </div>
       <div class="right box">
         <div class="right-head center">建议</div>
         <div class="right-table" id="table">
         </div>
       </div>
-    </div>    
+    </div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="static/js/dashboard-data.js"></script>
   </body>
 
 </html>

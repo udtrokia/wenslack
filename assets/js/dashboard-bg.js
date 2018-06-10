@@ -1,33 +1,4 @@
-;(function(){
-  var list = [];
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", "/api/get_list" , true);
-  xhr.send();
-  xhr.onreadystatechange = function(res){
-    var _list = [];    
-    var list = res.target.response
-              ?JSON.parse(res.target.response)
-              :null;
-
-    for(var i in list){
-      _list.push(JSON.parse(list[i]["orbit"]))
-    }
-    list != null && layout(_list);
-    console.log(_list)    
-  }
-
-  function layout(list){
-    const table = document.getElementById("table");
-    for(var a in list){
-      let advice = document.createElement("div");
-      advice.className = "right-row box center";
-      advice.innerHTML = list[a].Advice
-      table.appendChild(advice);
-    }
-  }
-})();
-
-// space background
+// <--space background-->
 ;(function(){
   var mouseX = 0, mouseY = 0,
       windowHalfX = window.innerWidth / 2,
