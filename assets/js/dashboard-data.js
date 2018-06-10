@@ -13,7 +13,7 @@
               :null;
 
     for(var i in list){
-      _list.push(JSON.parse(list[i]["orbit"]))
+      _list.push(JSON.parse(list[i]["orbit"]));
     }
     list != null && layout(_list);
   }
@@ -58,11 +58,11 @@
     unit.innerHTML = "";
     draw_pie("position", attrs.p_amount, total);
     draw_pie("unit", attrs.u_amount, total);
-    detail.innerHTML =  "<text>"
+    detail.innerHTML =  "<p class='line'>"
                       + attr_unit
-                      + ` · `
+                      + `</p><p class='line'>`
                       + attr_position
-                      + "</text>"
+                      + "</p>"
   }
 
   function mouse_out(node){
@@ -76,7 +76,6 @@
   }
   
   function draw_pie(node, amount, total) {
-    console.log(total)
     var dataset = [{
       label: "rgba(78, 186, 169, .9)",
       count: amount
